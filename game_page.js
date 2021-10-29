@@ -30,8 +30,42 @@ function send(){
 
     question_word="<h4 id='word_diplay'>Q. "+removelast+"</h4>";
     input_box="<br>Answer: <input type='text' id='inputbox'>";
-    check_button="<br><br> <button class='btn btn-info' onclick='check'>Check</button>";
+    check_button="<br><br> <button class='btn btn-info' onclick='check()'>Check</button>";
     row=question_word+input_box+check_button;
     document.getElementById("output").innerHTML=row;
     document.getElementById("word").value="";
+}
+
+question_turn="player1";
+anwser_turn="player2";
+function check(){
+get_anwser=document.getElementById("inputbox").value;
+anwser=get_anwser.toLowerCase();
+if (anwser == word) {
+    if (anwser_turn == "player1") {
+        player_1_score=player_1_score+1;
+        document.getElementById("player_1_score").innerHTML= player_1_score;
+    }
+    else{
+    player_2_score=player_2_score+1;
+    document.getElementById("player_2_score").innerHTML= player_2_score;
+    }
+}
+if (question_turn == "player1") {
+    question_turn="player2";
+    document.getElementById("player_question").innerHTML = "Question turn : "+player_2_name;
+}
+else{
+    question_turn="player1";
+    document.getElementById("player_question").innerHTML = "Question turn : "+player_1_name;
+}
+if (anwser_turn == "player1") {
+    anwser_turn="player2";
+    document.getElementById("player_answer").innerHTML = "Answer turn : "+player_2_name;
+}
+else{
+    anwser_turn="player1";
+    document.getElementById("player_answer").innerHTML = "Answer turn : "+player_1_name;
+}
+document.getElementById("output").innerHTML="";
 }
